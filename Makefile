@@ -7,20 +7,19 @@ CPPFLAGS += -isystem include
 # Flags passed to the C++ compiler.
 CXXFLAGS += -g -Wall -Wextra -pthread
 
-# All Google Test headers.  Usually you shouldn't change this
-# definition.
-GTEST_HEADERS = include/gtest/*.h include/gtest/internal/*.h
+all : testapp
 
-all : sample1_unittest
-
-sample1.o : sample1.cc sample1.h $(GTEST_HEADERS)
+sample1.o : sample1.cc sample1.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c sample1.cc
 
-sample1_unittest.o : sample1_unittest.cc sample1.h $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c sample1_unittest.cc
-
-sample1_unittest : sample1.o sample1_unittest.o gtest_main.a
+testapp : sample1.o testapp.cc libgtest.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
-clean: 
-	rm *.o *.exe
+gtest-all.o : src/*.cc src/*.h include/gtest/*.h include/gtest/internal/*.h
+	$(CXX) $(CPPFLAGS) -I. $(CXXFLAGS) -c src/gtest-all.cc
+
+libgtest.a: gtest-all.o
+	ar rcs libgtest.a gtest-all.o
+
+clean:
+	rm *.o *.exe *.a
