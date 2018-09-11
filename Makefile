@@ -12,6 +12,8 @@ all : testapp
 sample1.o : sample1.cc sample1.h 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c sample1.cc
 
+# can also use libgtest.so
+#testapp : sample1.o testapp.cc libgtest.so
 testapp : sample1.o testapp.cc libgtest.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
