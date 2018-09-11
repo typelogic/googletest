@@ -16,7 +16,10 @@ sample1.o : sample1.cc sample1.h
 #testapp : sample1.o testapp.cc libgtest.so
 #testapp : sample1.o testapp.cc libgtest.a
 testapp : sample1.o testapp.cc gmock.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
+
+testapp2: testapp2.cc gmock.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Igooglemock/include/ -o $@ $^
 
 # no -fPIC works?
 gtest-all.o : src/*.cc src/*.h include/gtest/*.h include/gtest/internal/*.h
