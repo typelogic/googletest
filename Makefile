@@ -18,6 +18,15 @@ sample1.o : sample1.cc sample1.h
 testapp : sample1.o testapp.cc gmock.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
 
+mytestapp : mytestapp.cpp gmock.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
+
+mocktest : mocktest.cpp gmock.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Igooglemock -Igooglemock/include $^ -o $@
+
+mockey : mockey.cpp gmock.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Igooglemock -Igooglemock/include $^ -o $@
+
 testapp2: testapp2.cc gmock.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Igooglemock/include/ -o $@ $^
 
