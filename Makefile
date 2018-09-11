@@ -14,7 +14,8 @@ sample1.o : sample1.cc sample1.h
 
 # can also use libgtest.so
 #testapp : sample1.o testapp.cc libgtest.so
-testapp : sample1.o testapp.cc libgtest.a
+#testapp : sample1.o testapp.cc libgtest.a
+testapp : sample1.o testapp.cc gmock.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
 # no -fPIC works?
@@ -28,6 +29,13 @@ libgtest.a: gtest-all.o
 # dynamic library
 libgtest.so: gtest-all.o
 	$(CXX) -shared gtest-all.o -o libgtest.so
+
+gmock-all.o : googlemock/src/*.cc googlemock/include/gmock/*.h googlemock/include/gmock/internal/*.h 
+	$(CXX) $(CPPFLAGS) -Igooglemock -Igooglemock/include $(CXXFLAGS) -c googlemock/src/gmock-all.cc
+
+# combines both gtest and gmock into one static library
+gmock.a : gmock-all.o gtest-all.o
+	$(AR) $(ARFLAGS) $@ $^
 
 clean:
 	@rm -f *.o *.exe *.a *.so *.dll
