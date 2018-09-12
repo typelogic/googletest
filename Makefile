@@ -27,6 +27,9 @@ mocktest : mocktest.cpp gmock.a
 mockey : mockey.cpp gmock.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Igooglemock -Igooglemock/include $^ -o $@
 
+Foo : Foo.cpp gmock.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Igooglemock -Igooglemock/include $^ -o $@
+
 testapp2: testapp2.cc gmock.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -Igooglemock/include/ -o $@ $^
 
@@ -50,4 +53,4 @@ gmock.a : gmock-all.o gtest-all.o
 	$(AR) $(ARFLAGS) $@ $^
 
 clean:
-	@rm -f *.o *.exe *.a *.so *.dll
+	@rm -f *.o *.exe *.a *.so *.dll Foo mocktest testapp mytestapp mockey testapp2
