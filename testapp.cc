@@ -4,6 +4,15 @@
 
 #include <gtest/gtest.h>
 
+void f(int n)
+{
+    if (n == 69) {
+        std::cout << "for you" << std::endl;
+    } else {
+        std::cout << "this is a test" << std::endl;
+    }
+}
+
 GTEST_API_ int main(int argc, char **argv) 
 {
     printf("Running main() from %s\n", __FILE__);
@@ -21,6 +30,9 @@ GTEST_API_ int main(int argc, char **argv)
 
     }
 #endif
+
+    f(13);
+    f(69);
 
     return RUN_ALL_TESTS();
 }
