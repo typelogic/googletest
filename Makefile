@@ -16,7 +16,7 @@ sample1.o : sample1.cc sample1.h
 #testapp : sample1.o testapp.cc libgtest.so
 #testapp : sample1.o testapp.cc libgtest.a
 testapp : sample1.o testapp.cc gmock.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lgcov -fprofile-arcs -ftest-coverage $^ -o $@
 
 mytestapp : mytestapp.cpp gmock.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -o $@
@@ -53,4 +53,4 @@ gmock.a : gmock-all.o gtest-all.o
 	$(AR) $(ARFLAGS) $@ $^
 
 clean:
-	@rm -f *.o *.exe *.a *.so *.dll Foo mocktest testapp mytestapp mockey testapp2
+	@rm -rf *.o *.exe *.a *.so *.dll Foo mocktest testapp mytestapp mockey testapp2 *.gcov *.gcda *.gcno *.info CODE_COVERAGE

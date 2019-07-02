@@ -69,4 +69,17 @@ gmock-all.o : googlemock/src/*.cc googlemock/include/gmock/*.h googlemock/includ
     $(CXX) $(CPPFLAGS) -Igooglemock -Igooglemock/include $(CXXFLAGS) -c googlemock/src/gmock-all.cc
 ```
 
+### How to Get Code Coverage
 
+This line in `Makefile` is for code coverage:
+
+```
+-lgcov -fprofile-arcs -ftest-coverage
+```
+
+To get code coverage steps:
+    - make testapp
+    - ./getcoverage.sh
+    - cd CODE_COVERAGE/ && python -m SimpleHTTPServer
+
+ 

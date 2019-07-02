@@ -8,6 +8,20 @@ GTEST_API_ int main(int argc, char **argv)
 {
     printf("Running main() from %s\n", __FILE__);
     testing::InitGoogleTest(&argc, argv);
+
+#if 0
+    if (argc == 0) {
+        for (int i = 0;i < 5;i++) {
+            std::cout << i << std::endl;
+        }
+    } else {
+        for (int j = 0;j < 10;j++) {
+            std::cout << "[" << j << "]" << std::endl;
+        }
+
+    }
+#endif
+
     return RUN_ALL_TESTS();
 }
 
