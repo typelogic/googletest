@@ -83,4 +83,10 @@ To get code coverage steps:
     - ./getcoverage.sh
     - cd CODE_COVERAGE/ && python -m SimpleHTTPServer
 
- 
+### Points to Ponder
+
+Compilation step only produces `*.gcno`. Running the `testapp` executable producest `*.gcda`.  Running `gcov testapp.gcno` produces  `*.gcov` files.
+Then running `lcov --capture --directory . --output-file gcov_result.info` produces the `gcov_result.info` file.
+Finally, `genhtml gcov_result.info --output-directory outputdir/` produces `html` files showing the coverage result percentage.
+
+
