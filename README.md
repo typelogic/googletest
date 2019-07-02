@@ -2,7 +2,7 @@
 
 Nailing down the fundamentals:
 
-## Compile testapp
+### Compile testapp
 
 ```
 $ make testapp
@@ -16,7 +16,7 @@ a - gtest-all.o
 g++ -isystem include -g -Wall -Wextra -pthread sample1.o testapp.cc gmock.a -o testapp
 ```
 
-## Run testapp
+### Run testapp
 ```
 $ ./testapp
 Running main() from testapp.cc
@@ -45,7 +45,7 @@ Running main() from testapp.cc
 [  PASSED  ] 6 tests.
 ```
 
-## Some Explanations
+### Some Explanations
 
 The `testapp.cc` has the `main()` entry point and the `sample1.cc` contains the critical algorithms to be tested. Therefore, the 
 executable `testapp` is the stopshop opportunity to statically link `gmock.a` into itself as well as the `sample1.o` binary to
