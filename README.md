@@ -78,6 +78,7 @@ This line in `Makefile` is for code coverage:
 ```
 
 To get code coverage steps:
+
     - make testapp
     - ./getcoverage.sh
     - cd CODE_COVERAGE/ && python -m SimpleHTTPServer
