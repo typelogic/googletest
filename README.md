@@ -97,3 +97,19 @@ With the provided `shell.nix`, the `gcov`, `lcov` and `python 2.7` will be acces
 nix-shell
 ```
 
+### 2020  Update
+
+In same principle as above, the latest way is also by:
+```
+git clone https://github.com/google/googletest.git
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=/opt/ ..
+cmake --build .
+make install
+```
+
+Shall build the libs and then copy these along with the headers into `/opt/` location.
+**Gtest** can function alone, but **Gmock** needs **Gtest** because it is an addition
+feature to mock things.
+
